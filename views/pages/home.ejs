@@ -1,0 +1,59 @@
+<%- include('./../layouts/header.ejs') %>
+
+<main class="container mt-3">
+   <h3 class="text-center fs-3">bienvenue sur le site de gestion de fichiers</h3>
+   <section class="row">
+      <div class="col-md-4">
+        <% if (messages.succes) {%>
+            <div class="alert alert-success">
+              <strong>succes !</strong> le ficher a bien été enregistrer
+            </div>
+        <% } %>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+             <label for="nom" class="form-label">Nom du ficher</label>
+             <input type="text" class="form-control" name="nom" id="nom"/>
+             <% if (messages.nom) { %>
+              <span class="text-danger">
+                veullez renseigner un nom de ficher
+              </span>
+             <% } %>
+            </div>
+            <div class="mb-3">
+                 <label for="file" class="form-label">choisir un fichier</label>
+                 <input type="file" class="form-control" id="file" name="image" accept="images/*">
+                 <span>choisir un fichier image de maximun 2MB</span>
+                 <% if (messages.file) { %>
+                     <span class="text-danger">
+                       <%= messages.file %>
+                     </span>
+                    <% } %>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Envoyer</button>
+           </form>
+      </div>
+
+      <div class="col-md-8">
+        <h4>liste des images envoyer</h4>
+        <% if (image.length ===0) { %>
+           <p>aucune image envoyer pour le moment</p>
+      
+        <% } else { %>
+           <% image.forEach(item => { %>
+               
+           <% }) %>
+        <% } %>
+         
+      </div>
+   </section>
+
+
+
+ 
+</main>
+
+
+
+
+
+<%- include('./../layouts/footer.ejs') %>

@@ -1,0 +1,11 @@
+.carousel-item{
+    height: 30rem;
+}
+.carousel-item img{
+    filter: brightness(50%);
+}
+@media screen and (max-width: 900px){
+    .carousel-item{
+        height: auto;
+    }
+}
