@@ -1,5 +1,5 @@
 const fileModel = require("../models/file.js")
-
+const fs = require ('fs')
 const home = async (req,res)=>{
     await fileModel.find({}).sort({_id:-1}).then((image =>{
         res.render('pages/home',{image:image})
@@ -53,4 +53,28 @@ const upload = (req,res)=>{
       });
    }
 }
-module.exports ={home,upload}
+
+//supression d'un fichier
+const deleteFile = async (req,res) =>{
+    const id =req.params.id
+    await fileModel.findById(id).then(image =>{
+       
+        fs.unlink('./public/imageWeb/'+image.image,async (err)=>{
+            if(err) console.log(err);
+            else {
+                try {
+                  await  fileModel.deleteOne({_id:id})
+                  res.redirect('/')
+                } catch (error) {
+                    console.log(error);
+                }
+                
+            }
+        })
+
+
+
+
+    }).catch(error=>console.log(error))
+} 
+module.exports ={home,upload,deleteFile}

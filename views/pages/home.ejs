@@ -40,7 +40,13 @@
       
         <% } else { %>
            <% image.forEach(item => { %>
-               
+            <div class="card">
+              <img src="/imageWeb/<%= item.image %>" class="card-img-top" alt="image">
+              <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+                <a href="/file/<%= item._id %>/delete" class="btn btn-danger">supprimer</a>
+              </div>
+            </div>
            <% }) %>
         <% } %>
          
